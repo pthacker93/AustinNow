@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>moviesAPI</title>
+    <script
+src="https://code.jquery.com/jquery-3.3.1.js"
+integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="poster">
+
+  </div>
+   <script>
+       
+       // function for input val
+
+//  var title = userInput;
+var queryURL = "https://api.themoviedb.org/3/movie/now_playing?api_key=ef73b07d7e7668c1b934d3be4be1864f&language=en-US&page=1"
+var respo;
+$.ajax({
+  url: queryURL,
+  method: "GET"
+}).then(function(response) {
+  respo = response;
+  console.log(response);
+  console.log(response.results[0].original_title);
+
+
+  for (i = 0; i < 6; i++) {
+    $("#poster").append("<img src='https://image.tmdb.org/t/p/w185_and_h278_bestv2/"+response.results[i].poster_path+"'>");
+    $("#poster").append(response.results[i].title);
+  }
+
+});
+</script>
+
+</body>
+</html>
